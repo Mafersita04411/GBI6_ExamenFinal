@@ -157,8 +157,13 @@ tcga_boxplots <-function(data){
 ### [0.5 PUNTOS] 2.2 Utilizando la función ```lapply()``` genera la lista ```cancertype_boxplots``` con las gráficas para cada tipo de cancer (cada tipo de dataset). 
 ```{r list_boxplots}
 # Escriba el código para generar la lista. 
-
-
+#Cada tipo de cabcer
+cancertype_boxplots1 <-unique(df_long2$dataset)
+cancertype_boxplots1
+#Lista nueva
+cancertype_boxplots2 <-lapply(cancertype_boxplots1,tcga_boxplots)
+#Todas kas graficas
+cancertype_boxplots2
 ```
 
 ### [0.5 PUNTOS] 2.3 Guarde en el subdirectorio ```result``` el tercer plot de la lista ```cancertype_boxplots``` con el nombre ```boxplot3.png```. La definición de a figura debe ser de 300dpi. 
