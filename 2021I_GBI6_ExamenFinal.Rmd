@@ -132,7 +132,12 @@ mRNA_expr_summary2
 
 ```{tex}
 #Interpretación 
-La tabla "mRNA_expr_summary.doc", detalla el numero de observaciones, media, desviacion estandara y otros datos de estadistica descriptiva, basado en datos de expresion genica de algunos tipos de cancer. Asimismo, el cancer con mayor expresion fue el BRCA con 590 repeticiones y su gen con mayor expresion ESR1. De igual forma, el cancer con menor cantidad de observaciones fue KIRP y su gen con mayor expresion fue PTEN.
+La tabla "mRNA_expr_summary.doc", detalla el número de observaciones, media,
+desviación estándar y otros datos de estadística descriptiva, basado en datos
+de expresión génica de algunos tipos de cáncer. Asimismo, el cáncer con mayor 
+expresión fue el BRCA con 590 repeticiones y su gen con mayor expresión ESR1. De 
+igual forma, el cáncer con menor cantidad de observaciones fue KIRP y su gen con 
+mayor expresión fue PTEN.
 ```
 
 
@@ -224,7 +229,21 @@ ggsave("results/regresion11.pdf",dpi = 300)
 
 ```{tex}
 # Esciba aquí su intepretación
+*****Boxplot
+La figura "boxplot3.png", resume los tipos de genes y su incidencia en torno a 
+la cantidad de niveles de expresión que estos poseen, para el cáncer albergado 
+en la casilla 3. Asimismo se puede apreciar, que el gen GATA3 tiene casi en 
+su totalidad expresiones negativas, exceptuando un punto. Igualmente, el gen 
+MUC1 posee la mayor cantidad de genes con valores positivos. Por último, todos 
+los boxplots tienen valores atípicos.
 
+
+
+*****Regresión lineal
+La figura "regresion11.dpf", hace referencia a la nube de puntos en torno a 
+cada gen (PTEN y GAPDH), se observa que es densa y se correlaciona con los 
+datos estadísticos obtenidos en la tabla del inciso 1.6. Como ya se mencionó, 
+los cánceres BRCA y OV son los que tienen mayor presencia.
 ```
 
 ## 3. CONTROL DE LA VERSIÓN [1 PUNTO]. Se verficará en ell repositorio de GitHub. 
