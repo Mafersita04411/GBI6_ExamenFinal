@@ -96,8 +96,6 @@ head(df,10)
 #La libreria reshape2 para cargar melt
 library(reshape2)
 #Funcion
-long_df <- function(df)
-#Funcion de solucion
 long_df <- function(df){
   #Cambio de formato con melt
   data_long <- melt(df,id.vars=c("bcr_patient_barcode","dataset"),measure.vars=c("GATA3","PTEN","XBP1","ESR1","MUC1","FN1","GAPDH"),variable.name="gen",value.name="expresion_level")
@@ -118,7 +116,15 @@ head(df_long2,10)
 ### [0.5 PUNTOS] 1.5 A partir de la data ```df_long```, genere un **Descriptive table** (librería ```sjPlot```) y guárdelo en el subdirectorio "result"  con el nombre **mRNA_expr_summary.doc** (previamente debe seleccionar las celdas adecuadas con funciones de la librería ```dplyr``` en conjunto con el operador ```%>%```). 
 ```{r desc_table}
 # Escriba el código para crear el Descriptive table 
-
+#Librerias
+library(sjPlot)
+library(sjmisc)
+library(dplyr)
+#SE extraeb grupos de estudio
+mRNA_expr_summary1 <-df_long2 %>% group_by(dataset,gen)
+#Descripcion
+mRNA_expr_summary2 <-descr(x=mRNA_expr_summary1,out="browser",file="results/mRNA_expr_summary.doc")
+mRNA_expr_summary2
 ```
 
 ### [0.5 PUNTOS] 1.6 Interprete los resultados de la tabla resultante de la sección 1.5. 
