@@ -92,7 +92,7 @@ head(df,10)
 ### [1 PUNTO] 1.3 Cree una función de nombre ```long_df``` para transformar la data ```df``` de la forma wide a long.
 
 ```{r funcion_long}
-# Escriba aquí la función long_df
+#Codigo función long_df
 #La libreria reshape2 para cargar melt
 library(reshape2)
 #Funcion
@@ -106,7 +106,7 @@ long_df <- function(df){
 ### [1 PUNTO] Genere la data ```df_long``` utilizandola función ```long_df```. 
 La tabla resultante tendrá tres columnas: ```dataset, gen, expresion_level```.  
 ```{r df_long}
-# Genere la data df_long 
+#Genere la data df_long 
 #La tabla resultante tendrá tres columnas: ```dataset, gen, expresion_level```
 df_long1 <-long_df(df)[ , 2:4]
 df_long2 <-data.frame(df_long1)
@@ -115,7 +115,7 @@ head(df_long2,10)
 
 ### [0.5 PUNTOS] 1.5 A partir de la data ```df_long```, genere un **Descriptive table** (librería ```sjPlot```) y guárdelo en el subdirectorio "result"  con el nombre **mRNA_expr_summary.doc** (previamente debe seleccionar las celdas adecuadas con funciones de la librería ```dplyr``` en conjunto con el operador ```%>%```). 
 ```{r desc_table}
-# Escriba el código para crear el Descriptive table 
+#Código para crear el Descriptive table 
 #Librerias
 library(sjPlot)
 library(sjmisc)
@@ -144,7 +144,7 @@ Para esta pregunta tiene que utilizar la data ```df_long```.
 ### [1 PUNTO] 2.1 Cree la funcion ```tcga_boxplots``` para visualizar boxplots y jitterplots. El único parámetro de la función es ```dataset```. La función debe crear un boxplot de los niveles de expresión para cada gen.
 
 ```{r}
-# Escriba el código para crear la función tcga_boxplots
+#Código para crear la función tcga_boxplots
 #Libreria
 library(ggplot2)
 #Funcion
@@ -156,13 +156,13 @@ tcga_boxplots <-function(data){
 
 ### [0.5 PUNTOS] 2.2 Utilizando la función ```lapply()``` genera la lista ```cancertype_boxplots``` con las gráficas para cada tipo de cancer (cada tipo de dataset). 
 ```{r list_boxplots}
-# Escriba el código para generar la lista. 
-#Cada tipo de cabcer
+#Código para generar la lista. 
+#Cada tipo de cancer
 cancertype_boxplots1 <-unique(df_long2$dataset)
 cancertype_boxplots1
 #Lista nueva
 cancertype_boxplots2 <-lapply(cancertype_boxplots1,tcga_boxplots)
-#Todas kas graficas
+#Todas las graficas
 cancertype_boxplots2
 ```
 
@@ -179,7 +179,7 @@ ggsave("results/boxplot3.png",dpi = 300)
 ### [1 PUNTO] 2.4 Escriba la función ```reg_gen_expression```, con el parámetro ```gen```. En este caso la función visualizará una gráfica de nube de puntos (geom_point) y una regresión por tipo de "dataset". La gráfica será de comparación de gen1 con gen2; por ejemplo en el eje "x" ```GATA3``` y en el eje "y"" ```FN1```.  
 
 ```{r reg_gen_exp}
-# Escriba aquí su función reg_gen_expression
+#Codigo función reg_gen_expression
 #install.packages ( "tidyverse" )
 #library(tidyverse)
 #Funcion para la expresion del gen
@@ -187,7 +187,6 @@ reg_gen_expression <- function(cancertype_boxplots3){
   #Filtro para la comparacion de 2 genes
   reg_gen1 <-filter(df_long2,gen==cancertype_boxplots3[1]) #Posible gen 1
   reg_gen2 <-filter(df_long2,gen==cancertype_boxplots3[2]) #Posible gen 2
-  
   #Se usa tibble, para generar la nueva data con los genes filtrados 
   #Se usa cbind oara ubir los filtros, y eso junto con tibble genera la nueva data.frame
   grafica2 <- ggplot(tibble("dataset"=cbind(reg_gen1,reg_gen2)[,1],"gen1"=cbind(reg_gen1,reg_gen2)[,3],"gen2"=cbind(reg_gen2,reg_gen2)[,6]),aes(x=gen1,y=gen2,color=dataset))+geom_point()+geom_smooth(method=lm,se=FALSE)
@@ -197,8 +196,16 @@ reg_gen_expression <- function(cancertype_boxplots3){
 
 ### [0.5 PUNTOS] 2.5. Utilizando la función ```lapply()``` genera la lista ```reg_genplots``` con las gráficas para cada par de genes posibles. Recuerde que tiene 7 tipos de genes, se debe tener todas las combinaciones posibles por pares de genes (combinatoria sin repetición).
 ```{r list_regplots}
-# Escriba el código para generar la lista. 
-
+#Código para generar la lista. 
+#Cada tipo de gen
+reg_genplots1 <-unique(df_long2$gen)
+reg_genplots1
+#Combinaciones para los genes
+reg_genplots2 <- combn(reg_genplots1,2,simplify = FALSE)
+reg_genplots2
+#Lista nueva en base a la combinacion
+reg_genplots3 <- lapply(reg_genplots2,reg_gen_expression)
+reg_genplots3
 ```
 
 
