@@ -77,7 +77,9 @@ Para comprender la data de esta evaluación se requiere conocer el significado d
 
 ### [0.5 PUNTOS] 1.1 Defina su directorio de trabajo. 
 ```{r wd}
-
+#Se define el directorio con set y get escribe el directorio
+a<-setwd(getwd())
+print(a)
 ```
 
 ### [0.5 PUNTOS] 1.2. Cargue la data "mRNA_expr.csv"
