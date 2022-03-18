@@ -180,8 +180,18 @@ ggsave("results/boxplot3.png",dpi = 300)
 
 ```{r reg_gen_exp}
 # Escriba aquí su función reg_gen_expression
-
-
+#install.packages ( "tidyverse" )
+#library(tidyverse)
+#Funcion para la expresion del gen
+reg_gen_expression <- function(cancertype_boxplots3){
+  #Filtro para la comparacion de 2 genes
+  reg_gen1 <-filter(df_long2,gen==cancertype_boxplots3[1]) #Posible gen 1
+  reg_gen2 <-filter(df_long2,gen==cancertype_boxplots3[2]) #Posible gen 2
+  
+  #Se usa tibble, para generar la nueva data con los genes filtrados 
+  #Se usa cbind oara ubir los filtros, y eso junto con tibble genera la nueva data.frame
+  grafica2 <- ggplot(tibble("dataset"=cbind(reg_gen1,reg_gen2)[,1],"gen1"=cbind(reg_gen1,reg_gen2)[,3],"gen2"=cbind(reg_gen2,reg_gen2)[,6]),aes(x=gen1,y=gen2,color=dataset))+geom_point()+geom_smooth(method=lm,se=FALSE)
+}
 ```
 
 
