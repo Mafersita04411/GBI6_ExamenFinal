@@ -131,8 +131,8 @@ mRNA_expr_summary2
 
 
 ```{tex}
-# Escriba aquí su interpretación 
-
+#Interpretación 
+La tabla "mRNA_expr_summary.doc", detalla el numero de observaciones, media, desviacion estandara y otros datos de estadistica descriptiva, basado en datos de expresion genica de algunos tipos de cancer. Asimismo, el cancer con mayor expresion fue el BRCA con 590 repeticiones y su gen con mayor expresion ESR1. De igual forma, el cancer con menor cantidad de observaciones fue KIRP y su gen con mayor expresion fue PTEN.
 ```
 
 
